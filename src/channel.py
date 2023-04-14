@@ -23,19 +23,21 @@ class Channel:
         self.viewCount = self.about_channel['items'][0]['statistics']["viewCount"]
 
     def print_info(self) -> None:
-        """Выводит в консоль информацию о канале.Убрал лишнюю функцию лишний вызов апи"""
+        """Returns info about channel, I have deleted excess method, and excess request of API"""
 
 
 
         return(json.dumps(self.about_channel, indent=2, ensure_ascii=False))
 
 
-
+# I don't know how to test next two methods, becouse they return nothing
     @classmethod
     def get_service(cls):
+        '''Returns youtube's class copy, if I got it right'''
         return cls.youtube
 
     def to_json(self, file_name):
+        '''creates file with JSON-structure about of requested channel'''
         with open(file_name, "wt") as file:
 
             file.write(json.dumps(self.about_channel))
