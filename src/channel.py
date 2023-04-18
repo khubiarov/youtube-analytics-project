@@ -4,7 +4,7 @@ import os
 
 from googleapiclient.discovery import build
 
-import isodate
+#import isodate
 
 class Channel:
     """Класс для ютуб-канала"""
@@ -42,4 +42,26 @@ class Channel:
 
             file.write(json.dumps(self.about_channel))
 
+    def __str__(self):
+        '''returns Name of channel and url'''
+        return f'{self.title} ({self.url})'
 
+# methodes after this line for work with calculate of subscribes
+    def __add__(self, other):
+        '''calculates subscribers of both channel'''
+        return int(self.subscriberCount) + int(other.subscriberCount)
+
+    def __sub__(self, other):
+        return int(self.subscriberCount) - int(other.subscriberCount)
+
+    def __lt__(self, other):
+        return int(self.subscriberCount) < int(other.subscriberCount)
+
+    def __gt__(self, other):
+        return int(self.subscriberCount) > int(other.subscriberCount)
+
+    def __le__(self, other):
+        return int(self.subscriberCount) <= int(other.subscriberCount)
+
+    def __ge__(self, other):
+        return int(self.subscriberCount) >= int(other.subscriberCount)
